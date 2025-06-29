@@ -3,7 +3,7 @@ import { Product, ProductService } from "@/app/(services)/Products/products"
 import { ProductDetailClient } from "./ProductDetailClient"
 
 interface ProductPageProps {
-  params: { productId: string }
+  params: Promise<{ productId: string }>
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
