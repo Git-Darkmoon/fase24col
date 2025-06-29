@@ -7,7 +7,7 @@ interface ProductPageProps {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { productId } = params
+  const { productId } = await params
 
   // Fetch the product details
   const response = await ProductService.getSingleProduct(productId)
