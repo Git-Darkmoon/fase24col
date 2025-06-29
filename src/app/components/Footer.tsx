@@ -8,7 +8,7 @@ export const Footer = () => {
           </div>
           <div className="flex space-x-6">
             <a
-              href="http://"
+              href="https://github.com/Git-Darkmoon/fase24col"
               className="underline underline-offset-2 hover:underline-offset-4 transition-all"
               target="_blank"
               rel="noopener noreferrer"

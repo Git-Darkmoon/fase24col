@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 export const Hero = () => {
   return (
@@ -15,12 +16,12 @@ export const Hero = () => {
             delivery—your one-stop shop for everything you need!
           </p>
           <div className="flex space-x-4">
-            <a
+            <Link
               href="/products"
               className="px-6 py-3 bg-slate-900 text-white rounded-md font-semibold hover:bg-slate-700 transition-colors"
             >
               Shop Now
-            </a>
+            </Link>
             <a
               href="/account"
               className="px-6 py-3 border border-slate-900 text-slate-900 rounded-md font-semibold hover:bg-slate-200 transition-colors"
