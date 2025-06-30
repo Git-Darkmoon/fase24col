@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "FASE24COL",
     images: [
       {
-        url: "/ogFasecol.png",
+        url: "https://private-user-images.githubusercontent.com/80002392/460371723-18457a7a-956b-44d4-bea2-b1d8be380837.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTEyNDQ2MjMsIm5iZiI6MTc1MTI0NDMyMywicGF0aCI6Ii84MDAwMjM5Mi80NjAzNzE3MjMtMTg0NTdhN2EtOTU2Yi00NGQ0LWJlYTItYjFkOGJlMzgwODM3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA2MzAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjMwVDAwNDUyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTNlZWNlMTA5YTFkYjg2MTRiMmRlOWZlMGJlYjI5NDQ2OWU5MTc0Y2VkM2JkMDhhNjRmMjlhY2MzYzM3YzRhYjUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.hj8-MoF0d3x9k2YdEXi_wfwjq1qQli9KOVu-fI3yK1I",
         width: 1200,
         height: 630,
         alt: "FASE24COL - Streetwear de lujo",
@@ -62,7 +62,9 @@ export const metadata: Metadata = {
     title: "FASE24COL | Streetwear de lujo y moda urbana",
     description:
       "Compra streetwear y moda urbana exclusiva en FASE24COL. Lanzamientos limitados, envíos rápidos y atención personalizada.",
-    images: ["/ogFasecol.png"],
+    images: [
+      "https://private-user-images.githubusercontent.com/80002392/460371723-18457a7a-956b-44d4-bea2-b1d8be380837.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTEyNDQ2MjMsIm5iZiI6MTc1MTI0NDMyMywicGF0aCI6Ii84MDAwMjM5Mi80NjAzNzE3MjMtMTg0NTdhN2EtOTU2Yi00NGQ0LWJlYTItYjFkOGJlMzgwODM3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA2MzAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNjMwVDAwNDUyM1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTNlZWNlMTA5YTFkYjg2MTRiMmRlOWZlMGJlYjI5NDQ2OWU5MTc0Y2VkM2JkMDhhNjRmMjlhY2MzYzM3YzRhYjUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.hj8-MoF0d3x9k2YdEXi_wfwjq1qQli9KOVu-fI3yK1I",
+    ],
   },
   icons: {
     icon: "/favicon.ico",
