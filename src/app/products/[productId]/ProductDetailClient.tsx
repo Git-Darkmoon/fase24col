@@ -4,6 +4,7 @@ import { useCart } from "@/app/(context)/CartContext"
 import { Product } from "@/app/(services)/Products/products"
 import Image from "next/image"
 import Link from "next/link"
+import { formatCOP } from "@/app/utils/helpers"
 
 interface ProductDetailClientProps {
   product: Product
@@ -18,9 +19,9 @@ export const ProductDetailClient: FC<ProductDetailClientProps> = ({
   const handleAddToCart = () => {
     addToCart({
       id: product.id,
-      name: product.name,
+      name: product.nombre,
       precio: Number(product.precio),
-      imagen: product.imagen,
+      imagen: product.imagenUrl,
       quantity,
     })
   }
@@ -32,8 +33,8 @@ export const ProductDetailClient: FC<ProductDetailClientProps> = ({
           {/* Product Image */}
           <div className="flex-shrink-0 w-full md:w-1/2">
             <Image
-              src={product.imagen}
-              alt={product.name}
+              src={product.imagenUrl}
+              alt={product.nombre}
               width={600}
               height={600}
               className="rounded-2xl object-cover w-full h-[400px] md:h-[600px] shadow-lg"
@@ -43,12 +44,12 @@ export const ProductDetailClient: FC<ProductDetailClientProps> = ({
           {/* Product Info */}
           <div className="flex-1">
             <h1 className="text-3xl font-extrabold text-slate-900 mb-2">
-              {product.name}
+              {product.nombre}
             </h1>
             <p className="text-slate-500 text-lg mb-6">{product.descripcion}</p>
             <div className="flex items-center gap-4 mb-6">
               <span className="text-2xl font-bold text-slate-900">
-                ${product.precio}
+                {formatCOP(product.precio)}
               </span>
               <span className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm">
                 {product.categoria}

@@ -1,5 +1,6 @@
 "use client"
 
+import { API_URL } from "@/app/utils/apiConsts"
 import React, {
   createContext,
   useContext,
@@ -9,8 +10,11 @@ import React, {
 } from "react"
 
 interface User {
-  name: string
-  email: string
+  id: number
+  nombre: string
+  correo: string
+  direccion: string
+  rol: string
 }
 
 interface AccountContextType {
@@ -35,18 +39,27 @@ export const AccountProvider = ({ children }: { children: ReactNode }) => {
     else localStorage.removeItem("user")
   }, [user])
 
+  // In AccountContext.tsx
+
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch(API_URL.LOGIN_USER, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ correo: email, contrasena: password }),
       })
       if (!res.ok) return false
       const data = await res.json()
-      // If backend returns user info, use it; else, use submitted info
-      if (data && data.name) setUser({ name: data.name, email })
-      else setUser({ name: "Usuario", email })
+      // If login failed, backend returns a string
+      if (typeof data === "string") return false
+      // Save user info in context/localStorage
+      setUser({
+        id: data.id,
+        nombre: data.nombre,
+        correo: data.correo,
+        direccion: data.direccion,
+        rol: data.rol,
+      })
       return true
     } catch {
       return false

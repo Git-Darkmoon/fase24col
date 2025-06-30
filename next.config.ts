@@ -5,19 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "picsum.photos",
-      },
-      {
-        protocol: "https",
-        hostname: "placecats.com",
-      },
-      {
-        protocol: "https",
-        hostname: "dummyimage.com",
-      },
-      {
-        protocol: "https",
-        hostname: "loremflickr.com",
+        hostname: "**", // Allows all HTTPS domains
       },
     ],
   },

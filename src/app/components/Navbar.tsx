@@ -27,7 +27,7 @@ export const Navbar = () => {
           <div className="flex-shrink-0">
             <Link
               href="/"
-              className="text-slate-950 text-2xl font-bold tracking-tight"
+              className="text-slate-950 text-2xl font-bold tracking-tight uppercase"
             >
               Fase24Col
             </Link>
@@ -46,7 +46,7 @@ export const Navbar = () => {
               onClick={handleAccountClick}
               className="text-slate-900 hover:text-slate-500 transition-colors font-medium cursor-pointer"
             >
-              Mi cuenta
+              {isAuthenticated ? "Mi cuenta" : "Iniciar sesión"}
             </a>
             <Link
               href="/cart"

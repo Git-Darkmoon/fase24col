@@ -2,12 +2,14 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { API_URL } from "@/app/utils/apiConsts"
 
 export default function RegisterPage() {
   const router = useRouter()
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [direccion, setDireccion] = useState("")
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -18,17 +20,26 @@ export default function RegisterPage() {
     setError("")
     setSuccess(false)
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch(API_URL.REGISTER_USER, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({
+          nombre: name,
+          correo: email,
+          contrasena: password,
+          direccion,
+          rol: "CLIENTE",
+        }),
       })
       setLoading(false)
       if (res.ok) {
         setSuccess(true)
         setTimeout(() => router.push("/login"), 1500)
       } else {
-        setError("No se pudo registrar el usuario")
+        const data = await res.json()
+        setError(
+          typeof data === "string" ? data : "No se pudo registrar el usuario"
+        )
       }
     } catch {
       setLoading(false)
@@ -65,6 +76,14 @@ export default function RegisterPage() {
             required
             className="border border-slate-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900"
           />
+          <input
+            type="text"
+            placeholder="Dirección"
+            value={direccion}
+            onChange={(e) => setDireccion(e.target.value)}
+            required
+            className="border border-slate-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900"
+          />
           {error && <div className="text-red-500 text-sm">{error}</div>}
           {success && (
             <div className="text-emerald-600 text-sm">
@@ -74,7 +93,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="bg-slate-900 text-white rounded-full py-3 font-semibold hover:bg-slate-700 transition disabled:opacity-60"
+            className="bg-slate-900 text-white rounded-full py-3 font-semibold hover:bg-slate-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {loading ? "Cargando..." : "Crear cuenta"}
           </button>

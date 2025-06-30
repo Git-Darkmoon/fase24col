@@ -4,11 +4,11 @@ import { HttpResponse, httpUtil } from "@/app/utils/httpUtil"
 
 export interface Product {
   id: string
-  name: string
+  nombre: string
   descripcion: string
-  precio: string
+  precio: number
   categoria: string
-  imagen: string
+  imagenUrl: string
 }
 
 export const ProductService = {

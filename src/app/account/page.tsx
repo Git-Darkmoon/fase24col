@@ -1,7 +1,9 @@
 "use client"
 
-import { useState } from "react"
-import { useFetch } from "@/hooks/useFetch"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { useAccount } from "../(context)/Account/AccountContext"
+import { API_URL } from "../utils/apiConsts"
 
 interface Purchase {
   id: string
@@ -10,46 +12,54 @@ interface Purchase {
   items: { name: string; quantity: number; price: number }[]
 }
 
-interface UserInfo {
-  name: string
-  email: string
-  phone?: string
-  address?: string
-}
-
 export default function AccountPage() {
-  // Simula la obtención de información del usuario y su historial de compras
-  const {
-    data: userInfo,
-    loading: loadingUser,
-    error: errorUser,
-  } = useFetch<UserInfo>("/api/user/info")
-  const {
-    data: purchases,
-    loading: loadingPurchases,
-    error: errorPurchases,
-  } = useFetch<Purchase[]>("/api/user/purchases")
-
+  const { user, logout, isAuthenticated } = useAccount()
+  const [purchases, setPurchases] = useState<Purchase[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [showDetailsId, setShowDetailsId] = useState<string | null>(null)
 
-  if (loadingUser || loadingPurchases) {
-    return <div className="text-center py-20 text-slate-400">Cargando...</div>
-  }
+  useEffect(() => {
+    if (!user) return
+    setLoading(true)
+    fetch(API_URL.USERS + `/${user.id}/compras`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error("Error cargando historial")
+        const data = await res.json()
+        setPurchases(data)
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [user])
 
-  if (errorUser || errorPurchases) {
+  if (!isAuthenticated) {
     return (
-      <div className="text-center py-20 text-red-500 font-semibold">
-        Error cargando los datos de la cuenta.
+      <div className="min-h-screen flex items-center justify-center text-center p-4">
+        <p className="text-slate-700 text-lg">
+          No has iniciado sesión. Por favor{" "}
+          <Link href="/login" className="text-slate-900 underline">
+            inicia sesión
+          </Link>{" "}
+          para ver tu cuenta.
+        </p>
       </div>
     )
   }
 
   return (
     <main className="min-h-screen bg-white py-12">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-extrabold text-slate-900 mb-8 tracking-tight">
-          Mi Cuenta
-        </h1>
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+            Mi Cuenta
+          </h1>
+          <button
+            onClick={() => logout()}
+            className="bg-red-600 text-white rounded-full px-5 py-2 hover:bg-red-700 transition"
+          >
+            Cerrar sesión
+          </button>
+        </div>
 
         {/* Información básica */}
         <section className="mb-12 bg-slate-50 rounded-xl p-6 shadow">
@@ -58,22 +68,17 @@ export default function AccountPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-slate-700">
             <div>
-              <span className="font-medium">Nombre:</span> {userInfo?.name}
+              <span className="font-medium">Nombre:</span> {user?.nombre}
             </div>
             <div>
-              <span className="font-medium">Correo:</span> {userInfo?.email}
+              <span className="font-medium">Correo:</span> {user?.correo}
             </div>
-            {userInfo?.phone && (
-              <div>
-                <span className="font-medium">Teléfono:</span> {userInfo.phone}
-              </div>
-            )}
-            {userInfo?.address && (
-              <div className="sm:col-span-2">
-                <span className="font-medium">Dirección:</span>{" "}
-                {userInfo.address}
-              </div>
-            )}
+            <div>
+              <span className="font-medium">Dirección:</span> {user?.direccion}
+            </div>
+            <div>
+              <span className="font-medium">Rol:</span> {user?.rol}
+            </div>
           </div>
         </section>
 
@@ -82,7 +87,18 @@ export default function AccountPage() {
           <h2 className="text-xl font-semibold text-slate-900 mb-4">
             Historial de Compras
           </h2>
-          {purchases && purchases.length > 0 ? (
+          {loading && (
+            <p className="text-center text-slate-500">Cargando historial...</p>
+          )}
+          {error && (
+            <p className="text-center text-red-500 font-semibold">{error}</p>
+          )}
+          {!loading && !error && purchases.length === 0 && (
+            <p className="text-slate-500 text-center">
+              No hay historial de compras.
+            </p>
+          )}
+          {!loading && !error && purchases.length > 0 && (
             <ul className="space-y-4">
               {purchases.map((purchase) => (
                 <li
@@ -129,8 +145,6 @@ export default function AccountPage() {
                 </li>
               ))}
             </ul>
-          ) : (
-            <div className="text-slate-500">No hay historial de compras.</div>
           )}
         </section>
       </div>

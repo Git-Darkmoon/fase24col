@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Product } from "../(services)/Products/products"
 import { useFetch } from "@/hooks/useFetch"
 import { API_URL } from "../utils/apiConsts"
+import { formatCOP } from "../utils/helpers"
 
 export default function ProductsPage() {
   const {
@@ -40,7 +41,7 @@ export default function ProductsPage() {
     }
     if (search.trim()) {
       filteredProducts = filteredProducts.filter((p) =>
-        p.name.toLowerCase().includes(search.toLowerCase())
+        p.nombre.toLowerCase().includes(search.toLowerCase())
       )
     }
     setFiltered(filteredProducts)
@@ -102,15 +103,15 @@ export default function ProductsPage() {
                   <Image
                     width={500}
                     height={500}
-                    src={product.imagen}
-                    alt={product.name}
+                    src={product.imagenUrl}
+                    alt={product.nombre}
                     className="object-cover w-full h-56 group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-between p-4">
                   <div>
                     <h2 className="text-lg font-semibold text-slate-900 mb-1 truncate">
-                      {product.name}
+                      {product.nombre}
                     </h2>
                     <p className="text-slate-500 text-sm mb-2 line-clamp-2">
                       {product.descripcion}
@@ -118,7 +119,7 @@ export default function ProductsPage() {
                   </div>
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-slate-900 font-bold text-lg">
-                      ${product.precio}
+                      {formatCOP(product.precio)}
                     </span>
                     <Link
                       href={`/products/${product.id}`}
