@@ -49,7 +49,7 @@ export const FeaturedCollections = () => (
           <Image
             width={512}
             height={512}
-            src="/HomePage/summerDrop.jpg"
+            src="/HomePage/SummerDrop.jpg"
             alt="Summer Drop"
             className="w-full h-48 object-cover group-hover:scale-105 transition-transform"
           />
