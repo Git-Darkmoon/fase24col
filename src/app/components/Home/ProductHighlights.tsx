@@ -5,19 +5,19 @@ import Link from "next/link"
 const products = [
   {
     id: 1,
-    name: "Oversized Hoodie",
+    name: "Busitos Oversize",
     price: "$69.900",
     image: "/HomePage/highlight1.jpg",
   },
   {
     id: 2,
-    name: "Graphic Tee",
+    name: "Lluvia de colores",
     price: "$35.000",
     image: "/HomePage/highlight2.jpg",
   },
   {
     id: 3,
-    name: "Cargo Pants",
+    name: "Pantalones Cargo",
     price: "$59.000",
     image: "/HomePage/highlight3.jpg",
   },
@@ -27,7 +27,7 @@ export const ProductHighlights = () => (
   <section className="py-12 bg-slate-50">
     <div className="container mx-auto px-4">
       <h2 className="text-2xl font-bold mb-6 text-slate-900">
-        Popular Products
+        Productos Populares
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {products.map((product) => (

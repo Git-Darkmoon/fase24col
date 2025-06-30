@@ -71,14 +71,14 @@ export const ProductDetailClient: FC<ProductDetailClientProps> = ({
               onClick={handleAddToCart}
               className="px-8 py-3 rounded-full bg-slate-900 text-white font-semibold text-lg hover:bg-slate-700 transition mb-4"
             >
-              Add to Cart
+              Agregar al carrito
             </button>
             <div>
               <Link
                 href="/products"
                 className="text-slate-500 hover:text-slate-900 transition text-sm underline"
               >
-                &larr; Back to Products
+                &larr; Volver a todos los productos
               </Link>
             </div>
           </div>

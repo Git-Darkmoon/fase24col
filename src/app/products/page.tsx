@@ -50,14 +50,14 @@ export default function ProductsPage() {
     <main className="min-h-screen bg-white py-12">
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-extrabold text-slate-900 mb-8 tracking-tight">
-          Products
+          Productos
         </h1>
 
         {/* Filters */}
         <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
           <input
             type="text"
-            placeholder="Search products..."
+            placeholder="Buscar productos..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="border border-slate-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900 transition w-full md:w-1/3"
@@ -75,7 +75,9 @@ export default function ProductsPage() {
 
         {/* Loading/Error */}
         {loading && (
-          <div className="text-center py-20 text-slate-400">Loading...</div>
+          <div className="text-center py-20 text-slate-400">
+            Cargando mor...
+          </div>
         )}
         {error && (
           <div className="text-center py-20 text-red-500 font-semibold">
@@ -88,7 +90,7 @@ export default function ProductsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {filtered.length === 0 && (
               <div className="col-span-full text-center text-slate-400">
-                No products found.
+                No se encontro nada parce.
               </div>
             )}
             {filtered.map((product) => (
@@ -122,7 +124,7 @@ export default function ProductsPage() {
                       href={`/products/${product.id}`}
                       className="px-4 py-1 rounded-full bg-slate-900 text-white text-sm font-medium hover:bg-slate-700 transition"
                     >
-                      View
+                      Ver detallitos
                     </Link>
                   </div>
                 </div>
